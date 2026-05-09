@@ -1,0 +1,1 @@
+var e=`immich-i18n`,t=`2.7.5`,n={format:`prettier --cache --check .`,"format:fix":`prettier --cache --write --list-different .`},r={prettier:`^3.7.4`,"prettier-plugin-sort-json":`^4.1.1`},i={name:e,version:t,private:!0,scripts:n,devDependencies:r};export{i as default,r as devDependencies,e as name,n as scripts,t as version};

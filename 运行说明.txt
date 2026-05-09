@@ -1,0 +1,70 @@
+Immich Windows 原生整合包 / Immich Windows Native Bundle
+========================================================
+
+中文
+----
+1. 解压整个目录，不要只复制 build\ImmichManager.exe。
+2. 双击 build\ImmichManager.exe。
+3. 点击“启动全部”，或分别启动 PostgreSQL、Redis、Machine Learning、Immich Server。
+4. 打开 http://127.0.0.1:2283。
+
+本包包含：
+- PostgreSQL + pgvector
+- Redis
+- Node.js + pnpm
+- Python 3.12 + machine-learning .venv
+- 默认 ML 模型：ViT-B-32__openai、buffalo_l、PP-OCRv5_mobile
+- geodata、Web 页面、core plugin
+
+打包：
+- 双击 package-clean-bundle.cmd
+- 或运行 powershell -ExecutionPolicy Bypass -File .\scripts\windows\package-clean-bundle.ps1
+
+重要路径：
+- Manager：build\ImmichManager.exe
+- 日志：runtime\logs
+- 数据库：runtime\data\postgres
+- Redis 数据：runtime\data\redis
+- 上传目录：upload
+- 模型：runtime\models
+- 可选配置：runtime\immich-windows.env
+
+端口：
+- PostgreSQL：127.0.0.1:54329
+- Redis：127.0.0.1:63790
+- Machine Learning：127.0.0.1:3003
+- Server/Web：127.0.0.1:2283
+
+English
+-------
+1. Extract the whole directory. Do not copy only build\ImmichManager.exe.
+2. Run build\ImmichManager.exe.
+3. Click Start All, or start PostgreSQL, Redis, Machine Learning, and Immich Server separately.
+4. Open http://127.0.0.1:2283.
+
+Included:
+- PostgreSQL + pgvector
+- Redis
+- Node.js + pnpm
+- Python 3.12 + machine-learning .venv
+- Default ML models: ViT-B-32__openai, buffalo_l, PP-OCRv5_mobile
+- geodata, Web UI, core plugin
+
+Package:
+- Double-click package-clean-bundle.cmd
+- Or run powershell -ExecutionPolicy Bypass -File .\scripts\windows\package-clean-bundle.ps1
+
+Important paths:
+- Manager: build\ImmichManager.exe
+- Logs: runtime\logs
+- Database: runtime\data\postgres
+- Redis data: runtime\data\redis
+- Uploads: upload
+- Models: runtime\models
+- Optional config: runtime\immich-windows.env
+
+Ports:
+- PostgreSQL: 127.0.0.1:54329
+- Redis: 127.0.0.1:63790
+- Machine Learning: 127.0.0.1:3003
+- Server/Web: 127.0.0.1:2283

@@ -1,0 +1,17 @@
+**/node_modules/**
+
+.DS_Store
+.vscode/*
+!.vscode/launch.json
+!.vscode/extensions.json
+.idea
+
+uploads
+coverage
+
+open-api/typescript-sdk/build
+
+vite.config.js.timestamp-*
+.pnpm-store
+*.tsbuildinfo
+*.tsbuildInfo

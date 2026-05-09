@@ -1,0 +1,1 @@
+import{un as e}from"./LpLgS94z.js";import"./DuqjToC6.js";var t=e({isDragging:!1,files:[]});export{t};

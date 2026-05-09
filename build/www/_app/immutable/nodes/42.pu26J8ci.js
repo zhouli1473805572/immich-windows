@@ -1,0 +1,1 @@
+import{n as e}from"../chunks/Rc5MzM2c.js";import{t}from"../chunks/ZXPHrX7T.js";import{t as n}from"../chunks/CRsWiqsU.js";var r=e({load:()=>i}),i=(({params:e})=>n(307,t.viewAsset({id:e.photoId})));export{r as universal};

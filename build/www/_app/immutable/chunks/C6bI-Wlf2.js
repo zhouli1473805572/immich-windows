@@ -1,0 +1,1 @@
+import{Ct as e,d as t,en as n,hn as r,mn as i}from"./LpLgS94z.js";import"./TtiosjUx.js";import{r as a,t as o}from"./CfBc-04p2.js";function s(s,c){r(c,!0);let l=t(c,[`$$slots`,`$$events`,`$$legacy`]);{let t=n(()=>[a(l)]);o(s,{get providers(){return e(t)}})}i()}export{s as t};

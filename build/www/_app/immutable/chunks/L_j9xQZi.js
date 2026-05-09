@@ -1,0 +1,1 @@
+import{d as e,hn as t,mn as n,o as r}from"./LpLgS94z.js";import"./TtiosjUx.js";import{t as i}from"./DnBToOff.js";function a(a,o){t(o,!0);let s=e(o,[`$$slots`,`$$events`,`$$legacy`]);r(()=>{let e={};for(let[t,n]of Object.entries(s))if(n){let r=t.slice(2);e[r]=n}return i.on(e)}),n()}export{a as t};

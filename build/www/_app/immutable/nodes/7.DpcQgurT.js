@@ -1,0 +1,1 @@
+import{n as e}from"../chunks/Rc5MzM2c.js";import{t}from"../chunks/DiQQ34vQ2.js";import{t as n}from"../chunks/CQvkX8bP2.js";import{t as r}from"../chunks/X13nMYSc2.js";var i=e({load:()=>a}),a=(async({url:e})=>{await t(e,{admin:!0}),await r.init()});export{n as component,i as universal};

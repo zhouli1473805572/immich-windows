@@ -1,0 +1,1 @@
+import{Ht as e,X as t,ct as n,d as r,f as i,lt as a}from"./LpLgS94z.js";import"./TtiosjUx.js";import{t as o}from"./D94rsnHd.js";function s(s,c){let l=r(c,[`$$slots`,`$$events`,`$$legacy`,`class`,`children`]);o(s,i({direction:`column`,align:`center`,get class(){return c.class}},()=>l,{children:(r,i)=>{var o=a();t(e(o),()=>c.children),n(r,o)},$$slots:{default:!0}}))}export{s as t};

@@ -1,0 +1,1 @@
+import{t as e}from"./l5bY5Fio.js";function t(t,n={}){let{onOutclick:r,onEscape:i}=n,a=e=>{let n=e.target;t.contains(n)||r?.()},o=t=>{e(t,{key:`Escape`})&&i&&(t.stopPropagation(),i())};return document.addEventListener(`mousedown`,a,!1),t.addEventListener(`keydown`,o,!1),{destroy(){document.removeEventListener(`mousedown`,a,!1),t.removeEventListener(`keydown`,o,!1)}}}export{t};
