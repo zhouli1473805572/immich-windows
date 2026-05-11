@@ -1,105 +1,132 @@
-# Immich Windows Native Bundle / Immich Windows 原生整合包
+# Immich Windows Native
 
-## 中文
+<p align="center">
+  <strong>轻量 Windows 原生启动版</strong><br>
+  Immich Server + Web + Machine Learning + PostgreSQL + Redis
+</p>
 
-这是面向 Windows 的 Immich 原生整合包。它保留 Immich Server、Web 页面、Machine Learning，并内置 PostgreSQL、pgvector、Redis、Node.js、pnpm、Python 3.12、ML 虚拟环境、默认模型、geodata 和 core plugin。
+<p align="center">
+  <a href="#中文">中文</a>
+  ·
+  <a href="#english">English</a>
+</p>
 
-不需要 Docker，不需要 Electron/Chromium。
+<details open id="中文">
+<summary><strong>中文启动说明</strong></summary>
 
-### 快速启动
+## 这是什么
 
-推荐方式：
+这是为 Windows 准备的 Immich 原生运行目录。它保留服务端、网页端和机器学习服务，并内置运行所需的 PostgreSQL、Redis、Node.js、Python、模型和 geodata。
 
-```powershell
+你不需要安装 Docker，也不需要安装数据库或 Redis。正常情况下，只要下载、解压、打开管理器、点击启动即可。
+
+## 第一次使用
+
+### 1. 下载
+
+下载完整的 `immich-window-bundle.zip`。
+
+请确认下载的是完整目录压缩包，而不是单独的 `ImmichManager.exe`。管理器只是启动入口，真正运行还需要旁边的 `runtime`、`server`、`web`、`machine-learning` 等目录。
+
+### 2. 放到一个简单路径
+
+推荐放到：
+
+```text
+C:\ImmichWindows
+```
+
+也可以放到桌面，但不要放到需要管理员权限的目录，例如：
+
+```text
+C:\Program Files
+C:\Windows
+```
+
+路径太深、同步盘、网盘目录也不推荐，后面排查问题会麻烦一些。
+
+### 3. 解压整个压缩包
+
+右键 `immich-window-bundle.zip`，选择“全部解压”。
+
+解压后应该能看到这些内容：
+
+```text
+build\ImmichManager.exe
+runtime\
+server\
+web\
+machine-learning\
+scripts\
+upload\
+```
+
+如果只看到一个 exe，说明解压或复制方式不对，需要重新解压完整目录。
+
+### 4. 启动管理器
+
+双击：
+
+```text
 build\ImmichManager.exe
 ```
 
-脚本方式：
+如果 Windows 弹出安全提示，选择允许运行。首次启动时 Windows Defender 可能会扫描 Node、Python 和模型文件，等待一会儿是正常的。
 
-```powershell
-powershell -ExecutionPolicy Bypass -File .\scripts\windows\start-all.ps1
+### 5. 启动全部服务
+
+在管理器窗口里点击：
+
+```text
+启动全部
 ```
 
-打开：
+管理器会依次启动：
+
+```text
+PostgreSQL
+Redis
+Machine Learning
+Immich Server
+```
+
+第一次启动会初始化数据库，耗时会比平时长。等状态变成运行中后，再打开网页。
+
+### 6. 打开 Immich 网页
+
+在浏览器打开：
 
 ```text
 http://127.0.0.1:2283
 ```
 
-### 打包干净版本
+第一次进入会要求创建管理员账号。创建完成后，就可以上传照片，或者在 Immich 的管理页面里添加外部图库。
 
-正式打包：
+## 常用位置
 
-双击：
+| 用途 | 位置 |
+| --- | --- |
+| 管理器 | `build\ImmichManager.exe` |
+| 网页地址 | `http://127.0.0.1:2283` |
+| 日志 | `runtime\logs` |
+| 上传目录 | `upload` |
+| PostgreSQL 数据 | `runtime\data\postgres` |
+| Redis 数据 | `runtime\data\redis` |
+| 机器学习模型 | `runtime\models` |
+| 可选配置 | `runtime\immich-windows.env` |
 
-```text
-package-clean-bundle.cmd
-```
+## 默认端口
 
-或使用命令：
+| 服务 | 地址 |
+| --- | --- |
+| Immich Server / Web | `127.0.0.1:2283` |
+| Machine Learning | `127.0.0.1:3003` |
+| PostgreSQL | `127.0.0.1:54329` |
+| Redis | `127.0.0.1:63790` |
 
-```powershell
-powershell -ExecutionPolicy Bypass -File .\scripts\windows\package-clean-bundle.ps1
-```
+## 修改配置
 
-默认输出：
-
-```text
-..\immich-window-bundle.zip
-```
-
-打包脚本会停止本项目内的服务，并清空这些本地运行数据，保证压缩包是全新状态：
-
-- `runtime\data\postgres`
-- `runtime\data\redis`
-- `runtime\logs`
-- `upload`
-- `runtime\hf-home`
-- `.cache\immich_ml`
-- `runtime\immich-windows.env`
-
-模型和运行时不会删除：
-
-- `runtime\models`
-- `runtime\postgres`
-- `runtime\redis`
-- `runtime\node`
-- `runtime\python`
-- `runtime\tools`
-- `machine-learning\.venv`
-
-如果只是测试打包脚本，不想清数据：
-
-```powershell
-powershell -ExecutionPolicy Bypass -File .\scripts\windows\package-clean-bundle.ps1 -NoArchive
-```
-
-如果想保留本机磁盘上的数据、但仍生成不包含数据的干净 zip：
-
-```powershell
-powershell -ExecutionPolicy Bypass -File .\scripts\windows\package-clean-bundle.ps1 -KeepLocalData -KeepLocalConfig
-```
-
-### 目录和端口
-
-
-| 项目             | 路径/端口                                  |
-| ---------------- | ------------------------------------------ |
-| Manager          | `build\ImmichManager.exe`                  |
-| Web 静态文件     | `build\www`                                |
-| PostgreSQL       | `runtime\postgres`, `127.0.0.1:54329`      |
-| PostgreSQL 数据  | `runtime\data\postgres`                    |
-| Redis            | `runtime\redis`, `127.0.0.1:63790`         |
-| Redis 数据       | `runtime\data\redis`                       |
-| Machine Learning | `machine-learning\.venv`, `127.0.0.1:3003` |
-| ML 模型          | `runtime\models`                           |
-| 上传目录         | `upload`                                   |
-| 日志             | `runtime\logs`                             |
-| 可选配置         | `runtime\immich-windows.env`               |
-
-### 配置
-
-可复制：
+如果你需要改端口、上传目录或模型目录，复制这个文件：
 
 ```text
 scripts\windows\immich-windows.example.env
@@ -111,25 +138,285 @@ scripts\windows\immich-windows.example.env
 runtime\immich-windows.env
 ```
 
-常用配置：
+然后按需修改。常用配置如下：
 
 ```text
 IMMICH_HOST=127.0.0.1
 IMMICH_PORT=2283
-IMMICH_MEDIA_LOCATION=C:\Immich\upload
+IMMICH_MEDIA_LOCATION=C:\ImmichWindows\upload
 IMMICH_POSTGRES_PORT=54329
 IMMICH_REDIS_PORT=63790
 IMMICH_MACHINE_LEARNING_URL=http://127.0.0.1:3003
-MACHINE_LEARNING_CACHE_FOLDER=C:\Immich\runtime\models
+MACHINE_LEARNING_CACHE_FOLDER=C:\ImmichWindows\runtime\models
 MACHINE_LEARNING_WORKERS=1
 ```
 
-### 排查
+修改后，请在管理器里停止全部服务，再重新启动。
 
-- Manager 日志：界面右侧日志栏。
-- 服务日志：`runtime\logs`。
-- PostgreSQL 无法启动：检查 `runtime\logs\postgres.log` 和端口 `54329` 是否被占用。
-- Redis 无法启动：检查 `runtime\logs\redis.log` 和端口 `63790` 是否被占用。
-- ML 抢占 2283：请确认使用最新的 `build\ImmichManager.exe`，ML 应使用 `3003`。
-- Web 报错：重新运行 `scripts\windows\build-web.ps1`。
-- 新机器首次启动慢：Windows Defender 可能会扫描 Node/Python/模型文件。
+## 新手排查
+
+### 管理器打不开
+
+确认你打开的是：
+
+```text
+build\ImmichManager.exe
+```
+
+并确认整个目录都在，不是只复制了 exe。
+
+### 网页打不开
+
+先看管理器里 `Immich Server` 是否显示运行中。然后检查日志：
+
+```text
+runtime\logs
+```
+
+如果提示 `EADDRINUSE`，说明端口被占用。可以关闭占用端口的软件，或修改 `runtime\immich-windows.env` 里的端口。
+
+### 数据库启动失败
+
+查看：
+
+```text
+runtime\logs\postgres.log
+```
+
+常见原因是端口 `54329` 被占用，或目录权限不足。建议把项目放到 `C:\ImmichWindows` 这类普通目录。
+
+### Redis 启动失败
+
+查看：
+
+```text
+runtime\logs\redis.log
+```
+
+常见原因是端口 `63790` 被占用。
+
+### 机器学习服务启动慢
+
+第一次启动会加载 Python 环境和模型。请等待管理器状态更新。模型目录在：
+
+```text
+runtime\models
+```
+
+### 外部图库扫描不到
+
+先确认 Windows 当前用户能直接访问该目录。建议在 Immich 里填写类似这样的路径：
+
+```text
+D:\照片
+D:\杂物堆\发票
+```
+
+如果路径里有特殊权限、网络盘或同步盘，先用普通本地目录测试。
+
+</details>
+
+<details id="english">
+<summary><strong>English Start Guide</strong></summary>
+
+## What This Is
+
+This is a Windows-native Immich runtime directory. It keeps the server, web UI, and machine-learning service, and includes PostgreSQL, Redis, Node.js, Python, models, and geodata.
+
+You do not need Docker, and you do not need to install PostgreSQL or Redis manually. In the normal case, download, extract, open the manager, and click start.
+
+## First Run
+
+### 1. Download
+
+Download the complete `immich-window-bundle.zip`.
+
+Make sure you downloaded the whole directory archive, not only `ImmichManager.exe`. The manager is only the launcher; the runtime also needs the nearby `runtime`, `server`, `web`, `machine-learning`, and other folders.
+
+### 2. Put It in a Simple Path
+
+Recommended path:
+
+```text
+C:\ImmichWindows
+```
+
+Avoid protected folders such as:
+
+```text
+C:\Program Files
+C:\Windows
+```
+
+Very deep paths, cloud-sync folders, and network drives are also not recommended.
+
+### 3. Extract the Whole Archive
+
+Right-click `immich-window-bundle.zip` and choose "Extract All".
+
+After extraction, you should see:
+
+```text
+build\ImmichManager.exe
+runtime\
+server\
+web\
+machine-learning\
+scripts\
+upload\
+```
+
+If you only see one exe file, the archive was not extracted correctly.
+
+### 4. Open the Manager
+
+Double-click:
+
+```text
+build\ImmichManager.exe
+```
+
+If Windows shows a security prompt, allow it to run. On the first launch, Windows Defender may scan Node, Python, and model files, so a short delay is normal.
+
+### 5. Start All Services
+
+In the manager window, click:
+
+```text
+Start All
+```
+
+The manager starts:
+
+```text
+PostgreSQL
+Redis
+Machine Learning
+Immich Server
+```
+
+The first launch initializes the database and can take longer than usual. Wait until the services are running before opening the web page.
+
+### 6. Open Immich
+
+Open this URL in your browser:
+
+```text
+http://127.0.0.1:2283
+```
+
+On the first visit, create the administrator account. After that, you can upload photos or add an external library from the Immich administration pages.
+
+## Important Paths
+
+| Purpose | Path |
+| --- | --- |
+| Manager | `build\ImmichManager.exe` |
+| Web URL | `http://127.0.0.1:2283` |
+| Logs | `runtime\logs` |
+| Uploads | `upload` |
+| PostgreSQL data | `runtime\data\postgres` |
+| Redis data | `runtime\data\redis` |
+| ML models | `runtime\models` |
+| Optional config | `runtime\immich-windows.env` |
+
+## Default Ports
+
+| Service | Address |
+| --- | --- |
+| Immich Server / Web | `127.0.0.1:2283` |
+| Machine Learning | `127.0.0.1:3003` |
+| PostgreSQL | `127.0.0.1:54329` |
+| Redis | `127.0.0.1:63790` |
+
+## Configuration
+
+To change ports, upload location, or model location, copy:
+
+```text
+scripts\windows\immich-windows.example.env
+```
+
+to:
+
+```text
+runtime\immich-windows.env
+```
+
+Common settings:
+
+```text
+IMMICH_HOST=127.0.0.1
+IMMICH_PORT=2283
+IMMICH_MEDIA_LOCATION=C:\ImmichWindows\upload
+IMMICH_POSTGRES_PORT=54329
+IMMICH_REDIS_PORT=63790
+IMMICH_MACHINE_LEARNING_URL=http://127.0.0.1:3003
+MACHINE_LEARNING_CACHE_FOLDER=C:\ImmichWindows\runtime\models
+MACHINE_LEARNING_WORKERS=1
+```
+
+After editing the file, stop all services in the manager and start them again.
+
+## Basic Troubleshooting
+
+### Manager Does Not Open
+
+Make sure you are opening:
+
+```text
+build\ImmichManager.exe
+```
+
+Also make sure the whole extracted directory is present.
+
+### Web Page Does Not Open
+
+Check whether `Immich Server` is running in the manager. Then inspect:
+
+```text
+runtime\logs
+```
+
+If the log says `EADDRINUSE`, the port is already in use. Close the other program or change the port in `runtime\immich-windows.env`.
+
+### Database Fails to Start
+
+Check:
+
+```text
+runtime\logs\postgres.log
+```
+
+Common causes are port `54329` being used by another process, or insufficient folder permissions.
+
+### Redis Fails to Start
+
+Check:
+
+```text
+runtime\logs\redis.log
+```
+
+The usual cause is port `63790` already being used.
+
+### Machine Learning Starts Slowly
+
+The first start loads the Python environment and models. Wait for the manager status to update. Models are stored in:
+
+```text
+runtime\models
+```
+
+### External Library Finds No Files
+
+Make sure the current Windows user can access the folder directly. Example paths:
+
+```text
+D:\Photos
+D:\Invoices
+```
+
+For permission-sensitive folders, network drives, or cloud-sync folders, test with a simple local folder first.
+
+</details>

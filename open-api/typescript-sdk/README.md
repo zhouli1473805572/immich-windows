@@ -1,10 +1,19 @@
-# TypeScript SDK / TypeScript SDK
+# TypeScript SDK
 
-## 中文
+<p>
+  <a href="#中文">中文</a>
+  ·
+  <a href="#english">English</a>
+</p>
 
-此目录是 Web 构建使用的 Immich TypeScript SDK。最终用户通常不需要直接运行它。
+<details open id="中文">
+<summary><strong>中文</strong></summary>
 
-相关路径：
+## 说明
+
+这里是 Web 构建使用的 Immich TypeScript SDK。普通用户启动 Immich 时不需要直接运行它。
+
+## 相关路径
 
 ```text
 open-api\typescript-sdk
@@ -18,11 +27,16 @@ build\www
 powershell -ExecutionPolicy Bypass -File .\scripts\windows\build-web.ps1
 ```
 
-## English
+</details>
 
-This directory contains the Immich TypeScript SDK used by the Web build. End users normally do not need to run it directly.
+<details id="english">
+<summary><strong>English</strong></summary>
 
-Related paths:
+## About
+
+This directory contains the Immich TypeScript SDK used by the Web build. End users do not need to run it directly when starting Immich.
+
+## Related Paths
 
 ```text
 open-api\typescript-sdk
@@ -35,3 +49,5 @@ If the Web build fails, run this from the project root:
 ```powershell
 powershell -ExecutionPolicy Bypass -File .\scripts\windows\build-web.ps1
 ```
+
+</details>
