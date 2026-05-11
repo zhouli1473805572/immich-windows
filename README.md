@@ -24,7 +24,7 @@
 
 ### 1. 下载
 
-下载完整的 `immich-window-bundle.zip`。
+下载完整的 ****项目代码。
 
 请确认下载的是完整目录压缩包，而不是单独的 `ImmichManager.exe`。管理器只是启动入口，真正运行还需要旁边的 `runtime`、`server`、`web`、`machine-learning` 等目录。
 
@@ -104,25 +104,27 @@ http://127.0.0.1:2283
 
 ## 常用位置
 
-| 用途 | 位置 |
-| --- | --- |
-| 管理器 | `build\ImmichManager.exe` |
-| 网页地址 | `http://127.0.0.1:2283` |
-| 日志 | `runtime\logs` |
-| 上传目录 | `upload` |
-| PostgreSQL 数据 | `runtime\data\postgres` |
-| Redis 数据 | `runtime\data\redis` |
-| 机器学习模型 | `runtime\models` |
-| 可选配置 | `runtime\immich-windows.env` |
+
+| 用途            | 位置                         |
+| --------------- | ---------------------------- |
+| 管理器          | `build\ImmichManager.exe`    |
+| 网页地址        | `http://127.0.0.1:2283`      |
+| 日志            | `runtime\logs`               |
+| 上传目录        | `upload`                     |
+| PostgreSQL 数据 | `runtime\data\postgres`      |
+| Redis 数据      | `runtime\data\redis`         |
+| 机器学习模型    | `runtime\models`             |
+| 可选配置        | `runtime\immich-windows.env` |
 
 ## 默认端口
 
-| 服务 | 地址 |
-| --- | --- |
-| Immich Server / Web | `127.0.0.1:2283` |
-| Machine Learning | `127.0.0.1:3003` |
-| PostgreSQL | `127.0.0.1:54329` |
-| Redis | `127.0.0.1:63790` |
+
+| 服务                | 地址              |
+| ------------------- | ----------------- |
+| Immich Server / Web | `127.0.0.1:2283`  |
+| Machine Learning    | `127.0.0.1:3003`  |
+| PostgreSQL          | `127.0.0.1:54329` |
+| Redis               | `127.0.0.1:63790` |
 
 ## 修改配置
 
@@ -309,25 +311,27 @@ On the first visit, create the administrator account. After that, you can upload
 
 ## Important Paths
 
-| Purpose | Path |
-| --- | --- |
-| Manager | `build\ImmichManager.exe` |
-| Web URL | `http://127.0.0.1:2283` |
-| Logs | `runtime\logs` |
-| Uploads | `upload` |
-| PostgreSQL data | `runtime\data\postgres` |
-| Redis data | `runtime\data\redis` |
-| ML models | `runtime\models` |
+
+| Purpose         | Path                         |
+| --------------- | ---------------------------- |
+| Manager         | `build\ImmichManager.exe`    |
+| Web URL         | `http://127.0.0.1:2283`      |
+| Logs            | `runtime\logs`               |
+| Uploads         | `upload`                     |
+| PostgreSQL data | `runtime\data\postgres`      |
+| Redis data      | `runtime\data\redis`         |
+| ML models       | `runtime\models`             |
 | Optional config | `runtime\immich-windows.env` |
 
 ## Default Ports
 
-| Service | Address |
-| --- | --- |
-| Immich Server / Web | `127.0.0.1:2283` |
-| Machine Learning | `127.0.0.1:3003` |
-| PostgreSQL | `127.0.0.1:54329` |
-| Redis | `127.0.0.1:63790` |
+
+| Service             | Address           |
+| ------------------- | ----------------- |
+| Immich Server / Web | `127.0.0.1:2283`  |
+| Machine Learning    | `127.0.0.1:3003`  |
+| PostgreSQL          | `127.0.0.1:54329` |
+| Redis               | `127.0.0.1:63790` |
 
 ## Configuration
 
